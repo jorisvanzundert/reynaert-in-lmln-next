@@ -1,0 +1,143 @@
+digraph {
+  v001 -> v002
+  v002 -> ac01
+  ac01 -> v003
+  v003 -> ac02
+  ac02 -> v004
+  v004 -> v005_01
+  v005_01 -> ac03
+  ac03 -> v005_02
+  v005_02 -> v006_01
+  v006_01 -> ac04
+  ac04 -> v006_02
+  v006_02 -> ac05
+  ac05 -> v007
+  v007 -> ac06
+  ac06 -> v008
+  v008 -> ac07
+  ac07 -> v009
+  v009 -> ac08
+  ac08 -> v010
+  v010 -> ac09
+  ac09 -> v011
+
+  ln_v002 -> v002
+  ln_v007 -> v007
+
+  v001 -> t001
+  v002 -> t002
+  ac01 -> t003
+  v003 -> t003
+  ac02 -> t004
+  v004 -> t004
+  v005_01 -> t005
+  ac03 -> t005
+  v005_02 -> t005
+  v006_01 -> t006
+  ac04 -> t006
+  v006_02 -> t006
+  ac05 -> t007
+  v007 -> t007
+  ac06 -> t008
+  v008 -> t008
+  ac07 -> t009
+  v009 -> t009
+  ac08 -> t010
+  v010 -> t010
+  ac09 -> t011
+  v011 -> t011
+
+  s001 -> v001
+  s002 -> v002
+  s003 -> ac01
+  s003 -> v003
+  s004 -> ac02
+  s004 -> v004
+  s004 -> v005_01
+  s004 -> ac03
+  s004 -> v005_02
+  s004 -> v006_01
+  s004 -> ac04
+  s004 -> v006_02
+  s004 -> ac05
+  s004 -> v007
+  s005 -> ac06
+  s005 -> v008
+  s005 -> ac07
+  s005 -> v009
+  s006 -> ac08
+  s006 -> v010
+  s006 -> ac09
+  s006 -> v011
+
+  ac -> ac01
+  ac -> ac02
+  ac -> ac03
+  ac -> ac04
+  ac -> ac05
+  ac -> ac06
+  ac -> ac07
+  ac -> ac08
+  ac -> ac09
+
+  ds_01 -> v005_01
+  ds_01 -> ac03
+  ds_01 -> v005_02
+
+  ds_02 -> v006_01
+  ds_02 -> ac04
+  ds_02 -> v006_02
+  ds_02 -> ac05
+  ds_02 -> v007
+  ds_02 -> ac06
+  ds_02 -> v008
+  ds_02 -> ac07
+  ds_02 -> v009
+
+  v001 [ label = "Dit biedt hu de coninc lyoen.",fillcolor="greenyellow",style="filled" ]
+  v002 [ label = "Dit neemt ende leeft met ghenaden.",fillcolor="greenyellow",style="filled" ]
+  ac01 [ label = "B",fillcolor="paleturquoise1",style="filled" ]
+  v003 [ label = " i Gode, ic dart hu wel raden!’",fillcolor="greenyellow",style="filled" ]
+  ac02 [ label = "I",fillcolor="paleturquoise1",style="filled" ]
+  v004 [ label = " singrijn sprac toten beere:",fillcolor="greenyellow",style="filled" ]
+  v005_01 [ label = "‘",fillcolor="greenyellow",style="filled" ]
+  ac03 [ label = "W",fillcolor="paleturquoise1",style="filled" ]
+  v005_02 [ label = " at sechdire toe, Brune heere?’",fillcolor="greenyellow",style="filled" ]
+  v006_01 [ label = "– ‘",fillcolor="greenyellow",style="filled" ]
+  ac04 [ label = "I",fillcolor="paleturquoise1",style="filled" ]
+  v006_02 [ label = " c hebbe liever in de rijsere",fillcolor="greenyellow",style="filled" ]
+  ac05 [ label = "L",fillcolor="paleturquoise1",style="filled" ]
+  v007 [ label = " igghen dan hier in dysere.",fillcolor="greenyellow",style="filled" ]
+  ac06 [ label = "L",fillcolor="paleturquoise1",style="filled" ]
+  v008 [ label = " aet ons toten coninc gaen",fillcolor="greenyellow",style="filled" ]
+  ac07 [ label = "E",fillcolor="paleturquoise1",style="filled" ]
+  v009 [ label = " nde sinen pays daer ontfaen.’",fillcolor="greenyellow",style="filled" ]
+  ac08 [ label = "M",fillcolor="paleturquoise1",style="filled" ]
+  v010 [ label = " et Fyrapeel dat si ghinghen",fillcolor="greenyellow",style="filled" ]
+  ac09 [ label = "E",fillcolor="paleturquoise1",style="filled" ]
+  v011 [ label = " nde maecten pays van allen dinghen.",fillcolor="greenyellow",style="filled" ]
+
+  ln_v002 [ label = "3460" ]
+  ln_v007 [ label = "3465" ]
+
+  t001 [ label = "This is what King Lion offers you." ]
+  t002 [ label = "Accept it, and you will live in his favour." ]
+  t003 [ label = "B y God, I would certainly recommend it!’" ]
+  t004 [ label = "Y singrijn said to the bear:" ]
+  t005 [ label = "‘W hat do you say, Lord Bruun?’" ]
+  t006 [ label = "– ‘I prefer lying in the bushes to" ]
+  t007 [ label = "L ying here, clapped in irons." ]
+  t008 [ label = "L et us go to the king and" ]
+  t009 [ label = "E nter into his peace.’" ]
+  t010 [ label = "M oving along with Fyrapeel, they" ]
+  t011 [ label = "E nded by making peace all round." ]
+
+  s001 [ label = "s1" ]
+  s002 [ label = "s2" ]
+  s003 [ label = "s3" ]
+  s004 [ label = "s4" ]
+  s005 [ label = "s5" ]
+  s006 [ label = "s6" ]
+
+  ac [ label = "acrostic" ]
+}

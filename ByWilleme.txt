@@ -1,0 +1,151 @@
+My goal is to tag text (tx), translation (t), verses (v), sentences (s), direct speech (ds), line numbers (ln) and the acrostic 'BY WILLEME' in the above text only version of the last lines of The Reynaert.
+
+
+     This is what King Lion offers you.
+3460 Accept it, and you will live in his favour.
+     B y God, I would certainly recommend it!’
+     Y singrijn said to the bear:
+     ‘W hat do you say, Lord Bruun?’
+     — ‘I prefer lying in the bushes to
+3465 L ying here, clapped in irons.
+     L et us go to the king and
+     E nter into his peace.’
+     M oving along with Fyrapeel, they
+     E nded by making peace all round.
+
+     Dit biedt hu de coninc lyoen.
+3460 Dit neemt ende leeft met ghenaden.
+     B i Gode, ic dart hu wel raden!’
+     I singrijn sprac toten beere:
+     ‘W at sechdire toe, Brune heere?’
+     – ‘I c hebbe liever in de rijsere
+3456 L igghen dan hier in dysere.
+     L aet ons toten coninc gaen
+     E nde sinen pays daer ontfaen.’
+     M et Fyrapeel dat si ghinghen
+     E nde maecten pays van allen dinghen.
+
+Just to make a first point: in the above case all verses are subordinate to sentences, but if a new sentence would start in the middle of a verse, it's easy to see how it could violate the sentence/verse hierarchy and where LMNL thus would be helpful. Just to make that case first another excerpt from earlier in the text:
+
+[tx}
+[s}[v}It had by then come to such a pass{v]
+[v [ln}80{]}that a day had been appointed{v]
+[v}when Reynaert should swear{v]
+[v}his innocence in court.{s] [s}But as soon{v]
+[v}as the relics were brought,{v]
+[v}he changed his mind{v]
+[v [ln}85{]}and escaped us in his stronghold.{v]{s]
+{tx]
+
+The above would be nastier in XML, although not impossible when applying fragments:
+
+<txt>
+<s><v>It had by then come to such a pass</v>
+<v ln='80'>that a day had been appointed</v>
+<v>when Reynaert should swear</v>
+<v ln='82'>his innocence in court.</v></s> <s><v ln='82'>But as soon</v>
+<v>as the relics were brought,</v>
+<v>he changed his mind</v>
+<v ln='85'>and escaped us in his stronghold.</v></s>
+</txt>
+
+Where the graph model probably starts to shine is if we would start from the original Middledutch and added in the English as translation. Because, either you treat them as separate documents, and keep the translation relation implicit (e.g. by assuming the same line numbers match between original (tx) and translation (tr)):
+
+[tx}
+[s}[v}Het was sint so verre comen{v]
+[v [ln}80{]}datter eenen dach af was ghenomen{v]
+[v}ende Reynaerd soude hebben ghedaen{v]
+[v}sine onsculde.{s] [s}Ende also saen{v]
+[v}alse die heleghe waren brocht,{v]
+[v}was hi andersins bedocht{v]
+[v [ln}85{]} ende ontfoer ons in sine veste.{v]{s]
+{tx]
+[tr}
+[s}[v}It had by then come to such a pass{v]
+[v [ln}80{]}that a day had been appointed{v]
+[v}when Reynaert should swear{v]
+[v}his innocence in court.{s] [s}But as soon{v]
+[v}as the relics were brought,{v]
+[v}he changed his mind{v]
+[v [ln}85{]}and escaped us in his stronghold.{v]{s]
+{tr]
+
+Or you make the translation relation somehow more explicit, by e.g. binding a translation (t) on sentence level. Either in a still implicit form (you assume that (s) and (t) are layers that strictly alternate, but this is not in any way guaranteed by some model):
+
+[s}[v}Het was sint so verre comen{v]
+[v [ln}80{]}datter eenen dach af was ghenomen{v]
+[v}ende Reynaerd soude hebben ghedaen{v]
+[v [ln}82{]}sine onsculde.{v]{s]
+[t}[v}It had by then come to such a pass{v]
+[v [ln}80{]}that a day had been appointed{v]
+[v}when Reynaert should swear{v]
+[v}his innocence in court.{t]
+[s}[v [ln}82{]}Ende also saen{v]
+[v}alse die heleghe waren brocht,{v]
+[v}was hi andersins bedocht{v]
+[v [ln}85{]} ende ontfoer ons in sine veste.{v]{s]
+[t}But as soon{v]
+[v}as the relics were brought,{v]
+[v}he changed his mind{v]
+[v [ln}85{]}and escaped us in his stronghold.{v]{t]
+
+Or somewhat more explicit by grouping s-s and t-s in gloss (g) groups I guess (but in which case still the translation of verses is implicit):
+
+[g}[s}[v}Het was sint so verre comen{v]
+[v [ln}80{]}datter eenen dach af was ghenomen{v]
+[v}ende Reynaerd soude hebben ghedaen{v]
+[v [ln}82{]}sine onsculde.{v]{s]
+[t}[v}It had by then come to such a pass{v]
+[v [ln}80{]}that a day had been appointed{v]
+[v}when Reynaert should swear{v]
+[v}his innocence in court.{t]{g]
+[g}[s}[v [ln}82{]}Ende also saen{v]
+[v}alse die heleghe waren brocht,{v]
+[v}was hi andersins bedocht{v]
+[v [ln}85{]} ende ontfoer ons in sine veste.{v]{s]
+[t}But as soon{v]
+[v}as the relics were brought,{v]
+[v}he changed his mind{v]
+[v [ln}85{]}and escaped us in his stronghold.{v]{t]{g]
+
+In both cases though LMNL seems to fall victim to a same problem as XML? I have to start introducing ids to keep relations explicit. This is even more foregrounded if we look at the acrostic example (refraining from translation clutter for now):
+
+[s}[v}This is what King Lion offers you.{v]{s]
+[s}[v [ln}3460{]}Accept it, and you will live in his favour.{v]{s]
+[s}[v}[ac [id}1{]}B{ac]y God, I would certainly recommend it!’{v]{s]
+[s}[v}[ac [id}1{]}Y{ac]singrijn said to the bear:{v]
+[v}[ds}‘[ac [id}1{]}W{ac]hat do you say, Lord Bruun?’{ds]{v]{s]
+[s}[v}– [ds}‘[ac [id}1{]}I{ac] prefer lying in the bushes to{v]
+[v [ln}3465{]}[ac [id}1{]}L{ac]ying here, clapped in irons.{v]{s]
+[s}[v}[ac [id}1{]}L{ac]et us go to the king and{v]
+[v}[ac [id}1{]}E{ac]nter into his peace.’{ds]{v]{s]
+[s}[v}[ac [id}1{]}M{ac]oving along with Fyrapeel, they{v]
+[v}[ac [id}1{]}E{ac]nded by making peace all round.{v]{s]
+
+So LMNL I think does seem to solve overlap elegantly. However, the more discontinuous your (overlapping) ranges, the more clutter you invite into your markup. Essentially what LMLN does is carry over the whole markup stack if you break the hierarchy. Anyway, let's try to work with the Middledutch:
+
+[g}[s}[v}Dit biedt hu de coninc lyoen.{v]{s]
+[t}[v}This is what King Lion offers you.{v]{t]{g]
+[g}[s}[v [ln}3460{]}Dit neemt ende leeft met ghenaden.{v]{s]
+[t}[v}Accept it, and you will live in his favour.{v]{t]{g]
+[g}[s}[v}[ac [id}ac1_0{]}B{ac]i Gode, ic dart hu wel raden!’{v]{s]
+[t}[v}[ac [id}ac1_0{]}B{ac]y God, I would certainly recommend it!’{v]{t]{g]
+[g}[s [id}s_1{]}[v}[ac [id}ac1_1{]}Y{ac]singrijn sprac toten beere:{v]{s]
+[t}[v}[ac [id}ac1_1{]}Y{ac]singrijn said to the bear:{v]{t]{g]
+[g}[s [id}s_1{]}[v}[ds}‘[ac [id}ac1_2{]}W{ac]at sechdire toe, Brune heere?’{ds]{v]{s]
+[t}[v}‘[ac [id}ac1_2{]}W{ac]hat do you say, Lord Bruun?’{v]{t]{g]
+[g}[s [id}s_1{]}[v}– [ds [id}ds_1{]}‘[ac [id}ac1_3{]}I{ac]c hebbe liever in de rijsere{ds]{v]{s]
+[t}[v}– ‘[ac [id}ac1_3{]}I{ac] prefer lying in the bushes to{v]{t]{g]
+[g}[s [id}s_1{][v [ln}3465{]}[ds [id}ds_1{]}[ac [id}ac1_4{]}L{ac]igghen dan hier in dysere.{ds]{v]{s]
+[t}[v}[ac [id}ac1_4{]}L{ac]ying here, clapped in irons.{v]{g]
+[g}[s [id}s_2{]}[v}[ds [id}ds_1{]}[ac [id}ac1_5{]}L{ac]aet ons toten coninc gaen{ds]{v]{s]
+[t}[v}[ac [id}ac1_5{]}L{ac]et us go to the king and{v]{t]{g]
+[g}[s [id}s_2{][v}[ds [id}ds_1{]}[ac [id}ac1_6{]}E{ac]nde sinen pays daer ontfaen.’{ds]{v]{s]
+[t}[v}[ac [id}ac1_6{]}E{ac]nter into his peace.’{v]{t]{g]
+[g}[s [id}s_3{][v}[ac [id}ac1_7{]}M{ac]et Fyrapeel dat si ghinghen{v]{s]
+[t}[v}[ac [id}ac1_7{]}M{ac]oving along with Fyrapeel, they{v]{t]{g]
+[g}[s [id}s_3{][v}[ac [id}ac1_8{]}E{ac]nde maecten pays van allen dinghen.{v]{s]
+[t}[v}[ac [id}ac1_8{]}E{ac]nded by making peace all round.{v]{t]{g]
+
+
+--JZ_20170411_2215
