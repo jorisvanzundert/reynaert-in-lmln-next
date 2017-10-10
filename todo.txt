@@ -1,0 +1,11 @@
+- we hebben een multidimensionaal model
+    - maar hebben we een use case input/output, incl.:
+        - witneses, variatie
+        - annotatie per witness
+        - commentaar
+- wat is een ultiem voorbeeld
+
+- 1A4: wat is het ideale beeld van een multidimensionale tekst?
+      - wat is het doel
+      - kun je er *andere* dingen mee?
+      - of kan je hetzelfde alleen sneller/makkelijker
